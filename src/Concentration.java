@@ -6,10 +6,13 @@
 */
 
 
+import javax.swing.*;
 
 public class Concentration
 	{
-	
+		JPanel mainPanel = new JPanel();
+		
+		
 	
 	
 	}
