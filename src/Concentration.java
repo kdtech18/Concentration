@@ -51,6 +51,8 @@ public class Concentration extends JFrame implements ActionListener
 			center.setLayout(board);
 		for (int i = 0; i < cards.length; i++)
 			{
+				JButton card = new JButton();
+				cards[i] = card;
 				center.add(cards[i]);
 				cards[i].addActionListener(this);
 			}
