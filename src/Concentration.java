@@ -29,6 +29,7 @@ public class Concentration extends JFrame implements ActionListener
 		ImageIcon orig = new ImageIcon("imageOriginal.gif");
 		
 		ArrayList<String> images = new ArrayList<String>();
+		ArrayList<String> randomImages = new ArrayList<String>();
 		
 	public Concentration()
 	{
@@ -45,7 +46,7 @@ public class Concentration extends JFrame implements ActionListener
 	    east.add(matches, BorderLayout.CENTER);
 	    
 	    
-	    
+	    System.out.println(images);
 	    add(mainPanel);
 	    validate();
 	}
@@ -67,6 +68,11 @@ public class Concentration extends JFrame implements ActionListener
 				}
 			}
 		}
+		
+	public void addGameimages()
+		{
+			
+		}
 	
 	public void actionPerformed(ActionEvent e)
 		{
@@ -76,5 +82,6 @@ public class Concentration extends JFrame implements ActionListener
 	public static void main(String[] args)
 		{
 			Concentration app = new Concentration();
+			
 		}// end main method
 	}
