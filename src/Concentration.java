@@ -40,12 +40,11 @@ public class Concentration extends JFrame implements ActionListener
 	    
 	    mainPanel.add(center, BorderLayout.CENTER);
 	    mainPanel.add(east, BorderLayout.EAST);
-	    
-	    center.setLayout(board);
+		addCards();
 	    east.add(newGame, BorderLayout.NORTH);
 	    east.add(matches, BorderLayout.CENTER);
 	    
-	    addCards();
+	    
 	    
 	    add(mainPanel);
 	    validate();
@@ -56,8 +55,7 @@ public class Concentration extends JFrame implements ActionListener
 			center.setLayout(board);
 		for (int i = 0; i < cards.length; i++)
 			{
-				JButton card = new JButton(orig);
-				cards[i] = card;
+				cards[i] = new JButton(orig);
 				center.add(cards[i]);
 				cards[i].addActionListener(this);
 			}
@@ -65,7 +63,7 @@ public class Concentration extends JFrame implements ActionListener
 			{
 			for (int x = 0; x < 2; x++)
 				{
-					images.add("image" + i + ".gif");
+					images.add(new String("image" + i + ".gif"));
 				}
 			}
 		}
