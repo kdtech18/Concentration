@@ -39,11 +39,15 @@ public class Concentration extends JFrame implements ActionListener
 	    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	    mainPanel.setLayout(border);
 	    
+	    Font font = new Font(Font.SANS_SERIF, 1, 18);
+	    matches.setFont(font);
+	    newGame.setFont(font);
+	    
 	    mainPanel.add(center, BorderLayout.CENTER);
 	    mainPanel.add(east, BorderLayout.EAST);
 		addCards();
 	    east.add(newGame, BorderLayout.NORTH);
-	    east.add(matches, BorderLayout.CENTER);
+	    east.add(matches, BorderLayout.SOUTH);
 	    
 	    
 	    System.out.println(images);
