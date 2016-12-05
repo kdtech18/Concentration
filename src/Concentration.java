@@ -48,9 +48,8 @@ public class Concentration extends JFrame implements ActionListener
 		addCards();
 	    east.add(newGame, BorderLayout.NORTH);
 	    east.add(matches, BorderLayout.SOUTH);
-	    
-	    
-	    System.out.println(images);
+	    addGameimages();
+	
 	    add(mainPanel);
 	    validate();
 	}
@@ -71,11 +70,16 @@ public class Concentration extends JFrame implements ActionListener
 					images.add(new String("image" + i + ".gif"));
 				}
 			}
+		
 		}
 		
 	public void addGameimages()
 		{
-			
+		for (int i = 0; i < images.size(); i++)
+			{
+				randomImages.add(images.get((int)(Math.random() * 15) + 1));
+			}
+			System.out.println(randomImages);
 		}
 	
 	public void actionPerformed(ActionEvent e)
@@ -86,6 +90,7 @@ public class Concentration extends JFrame implements ActionListener
 	public static void main(String[] args)
 		{
 			Concentration app = new Concentration();
+			
 			
 		}// end main method
 	}
