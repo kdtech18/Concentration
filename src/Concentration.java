@@ -30,6 +30,7 @@ public class Concentration extends JFrame implements ActionListener
 		
 		ArrayList<String> images = new ArrayList<String>();
 		ArrayList<String> randomImages = new ArrayList<String>();
+		ArrayList<ImageIcon> imageIconsRandom = new ArrayList<ImageIcon>();
 		
 	public Concentration()
 	{
@@ -59,7 +60,7 @@ public class Concentration extends JFrame implements ActionListener
 			center.setLayout(board);
 		for (int i = 0; i < cards.length; i++)
 			{
-				cards[i] = new JButton(orig);
+				cards[i] = new JButton(imageIconsRandom.get(i));
 				center.add(cards[i]);
 				cards[i].addActionListener(this);
 			}
@@ -79,7 +80,10 @@ public class Concentration extends JFrame implements ActionListener
 			{
 				randomImages.add(images.get((int)(Math.random() * 15) + 1));
 			}
-			System.out.println(randomImages);
+		for (int i = 0; i < randomImages.size(); i++)
+			{
+				imageIconsRandom.add(new ImageIcon(randomImages.get(i)));
+			}
 		}
 	
 	public void actionPerformed(ActionEvent e)
