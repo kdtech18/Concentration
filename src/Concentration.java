@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Concentration extends JFrame implements ActionListener
 	{
@@ -47,10 +46,10 @@ public class Concentration extends JFrame implements ActionListener
 	    
 	    mainPanel.add(center, BorderLayout.CENTER);
 	    mainPanel.add(east, BorderLayout.EAST);
-	    addCards();
-	    addGameimages();
+		addCards();
 	    east.add(newGame, BorderLayout.NORTH);
 	    east.add(matches, BorderLayout.SOUTH);
+	    
 	
 	    add(mainPanel);
 	    validate();
@@ -89,21 +88,9 @@ public class Concentration extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 		{
-			Object source = e.getSource();
-		for (int i = 0; i < cards.length; i++)
-			{
-				if (source == cards[i])
-					{
-						
-					}
-			}
 			
 		}
 	
-	public void cardClicked(int cardNum)
-		{
-			cards[cardNum] = new JButton(imageIconsRandom.get(cardNum));
-		}
 	public static void main(String[] args)
 		{
 			Concentration app = new Concentration();
