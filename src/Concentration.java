@@ -91,7 +91,6 @@ public class Concentration extends JFrame implements ActionListener
 			int num = (int)(Math.random() * images.size());
 			imageIconsRandom.add(new ImageIcon(images.get(num)));
 			images.remove(num);
-				
 			}
 		/*for (int i = 0; i < images.size(); i++)
 			{
@@ -110,8 +109,17 @@ public class Concentration extends JFrame implements ActionListener
 			{
 			for (int i = 0; i < cards.length; i++)
 				{
-					cards[i] = new JButton(orig);
+				for (int y = 0; y< 8; y++)
+					{
+					for (int x = 0; x < 2; x++)
+						{
+						images.add(new String("image" + i + ".gif"));
+						}
+					}
+					cards[i].setIcon(orig);
 					cards[i].setEnabled(true);
+					imageIconsRandom.remove(i);
+					addGameimages();
 				}
 			}
 		
@@ -119,13 +127,13 @@ public class Concentration extends JFrame implements ActionListener
 			{
 			if(source == cards[i])
 				{
-				if(click == 3)
+				if(click == 3 && (index1 != i || index2 != i))
 					{
 					click = 1;
 					cards[index1].setIcon(orig);
 					cards[index2].setIcon(orig);
 					}
-				if(click == 2)
+				if(click == 2 && (index1 != i || index2 != i))
 					{
 					cards[i].setIcon(imageIconsRandom.get(i));
 					image2 = imageIconsRandom.get(i).getDescription();
@@ -143,7 +151,7 @@ public class Concentration extends JFrame implements ActionListener
 					else
 						click++;
 					}
-				if(click == 1)
+				if(click == 1 && (index1 != i || index2 != i))
 					{
 					cards[i].setIcon(imageIconsRandom.get(i));
 					image1 = imageIconsRandom.get(i).getDescription();
