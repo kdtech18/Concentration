@@ -50,6 +50,8 @@ public class Concentration extends JFrame implements ActionListener
 		matches.setFont(font);
 		newGame.setFont(font);
 		
+		newGame.addActionListener(this);
+		
 		mainPanel.add(center, BorderLayout.CENTER);
 		mainPanel.add(east, BorderLayout.EAST);
 		addCards();
@@ -104,6 +106,14 @@ public class Concentration extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e)
 		{
 		Object source = e.getSource();
+		if (source == newGame)
+			{
+			for (int i = 0; i < cards.length; i++)
+				{
+					cards[i] = new JButton(orig);
+					cards[i].setEnabled(true);
+				}
+			}
 		
 		for (int i = 0; i < cards.length; i++)
 			{
@@ -127,7 +137,8 @@ public class Concentration extends JFrame implements ActionListener
 						{
 						cards[index1].setEnabled(false);
 						cards[index2].setEnabled(false);
-							
+						numMatches++;
+						matches.setText("Matches: " + numMatches);
 						}
 					else
 						click++;
@@ -149,6 +160,7 @@ public class Concentration extends JFrame implements ActionListener
 	
 	public boolean checkMatch(String str1, String str2)
 		{
+		
 		return str1.equals(str2);
 		}
 	
