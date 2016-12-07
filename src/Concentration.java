@@ -12,11 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+
 public class Concentration extends JFrame implements ActionListener
 	{
 		JPanel mainPanel = new JPanel();
 		JPanel center = new JPanel();
 		JPanel east = new JPanel();
+		
 		
 		BorderLayout border = new BorderLayout();
 		GridLayout board = new GridLayout(4, 4, 1, 1);
@@ -31,6 +33,12 @@ public class Concentration extends JFrame implements ActionListener
 		ArrayList<String> images = new ArrayList<String>();
 		ArrayList<String> randomImages = new ArrayList<String>();
 		ArrayList<ImageIcon> imageIconsRandom = new ArrayList<ImageIcon>();
+		
+		// variables
+		int index1, index2;
+		String image1, image2;
+		int clicks;
+		boolean win;
 		
 	public Concentration()
 	{
@@ -76,19 +84,36 @@ public class Concentration extends JFrame implements ActionListener
 		
 	public void addGameimages()
 		{
-		for (int i = 0; i < images.size(); i++)
+		/*for (int i = 0; i < images.size(); i++)
 			{
 				randomImages.add(images.get((int)(Math.random() * 15) + 1));
 			}
 		for (int i = 0; i < randomImages.size(); i++)
 			{
 				imageIconsRandom.add(new ImageIcon(randomImages.get(i)));
+			}*/
+		for (int i = 0; i<images.size(); i++)
+			{
+				int r = (int)(Math.random() * images.size());
+				imageIconsRandom.add(new ImageIcon(images.get(r)));
+				images.remove(r);
 			}
+			
 		}
 	
 	public void actionPerformed(ActionEvent e)
 		{
-			
+			Object source = e.getSource();
+		for (int i = 0; i < 16; i++)
+			{
+				if (source == cards[i])
+					{
+						image1 = cards[i].getText();
+						index1 = i;
+						
+						
+					}
+			}
 		}
 	
 	public static void main(String[] args)
