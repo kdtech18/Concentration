@@ -146,7 +146,7 @@ public class Concentration extends JFrame implements ActionListener
 					
 					if(!match)
 					{
-						System.out.print("IN CLICK 3 " + click);
+						
 						cards[index1].setIcon(orig);
 						cards[index2].setIcon(orig);
 					
@@ -156,31 +156,30 @@ public class Concentration extends JFrame implements ActionListener
 					}
 				if(click == 2)
 					{
-					System.out.print("IN CLICK 2 NO MATCH: " + click);
-					cards[i].setIcon(imageIconsRandom.get(i));
-					image2 = imageIconsRandom.get(i).getDescription();
-					//System.out.print(image1);
-					index2 = i;
-					//System.out.print(index1);
-					match = checkMatch(image1, image2);
-					if(match)
+					if (!cards[i].getIcon().toString().equals(image2))
 						{
+						cards[i].setIcon(imageIconsRandom.get(i));
+						image2 = imageIconsRandom.get(i).getDescription();
+						
+						index2 = i;
+						match = checkMatch(image1, image2);
+						if (match)
+							{
 							//click = 1;
-							System.out.print("IN CLICK 2: " + click);
+							
 							//
-						cards[index1].setEnabled(false);
-						cards[index2].setEnabled(false);
-						click++; // HERE
-						numMatches++;
-						matches.setText("Matches: " + numMatches);
+							cards[index1].setEnabled(false);
+							cards[index2].setEnabled(false);
+							click++; // HERE
+							numMatches++;
+							matches.setText("Matches: " + numMatches);
+							} else
+							click++;
 						}
-					else
-						click++;
-					
 					}
 				if(click == 1)
 					{
-					System.out.print("IN CLICK 3: " + click);
+					
 					cards[i].setIcon(imageIconsRandom.get(i));
 					image1 = imageIconsRandom.get(i).getDescription();
 					//System.out.print(image1);
@@ -194,7 +193,6 @@ public class Concentration extends JFrame implements ActionListener
 				//System.out.print(click);
 			}
 		}
-	
 	public boolean checkMatch(String str1, String str2)
 		{
 		
