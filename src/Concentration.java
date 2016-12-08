@@ -29,8 +29,8 @@ public class Concentration extends JFrame implements ActionListener
 	
 	ImageIcon orig = new ImageIcon("imageOriginal.gif");
 	
-	ArrayList<String> images = new ArrayList<String>();
-	List<ImageIcon> imageIconsRandom = new ArrayList<ImageIcon>();
+	ArrayList<String> images; // new ArrayList<String>();
+	List<ImageIcon> imageIconsRandom;// = new ArrayList<ImageIcon>();
 	
 	// variables
 	String image1, image2;
@@ -50,22 +50,39 @@ public class Concentration extends JFrame implements ActionListener
 		matches.setFont(font);
 		newGame.setFont(font);
 		
+		makeBoard();
 		newGame.addActionListener(this);
 		
-		mainPanel.add(center, BorderLayout.CENTER);
+		/*mainPanel.add(center, BorderLayout.CENTER);
 		mainPanel.add(east, BorderLayout.EAST);
+		
+		east.add(newGame, BorderLayout.NORTH);
+		east.add(matches, BorderLayout.SOUTH);
+		
+		
+		add(mainPanel);*/
+		validate();
+		}
+	public void makeBoard()
+	{
+		System.out.print("Here");
+		//removeAll();
 		addCards();
 		addGameimages();
+		mainPanel.add(center, BorderLayout.CENTER);
+		mainPanel.add(east, BorderLayout.EAST);
+		
 		east.add(newGame, BorderLayout.NORTH);
 		east.add(matches, BorderLayout.SOUTH);
 		
 		
 		add(mainPanel);
 		validate();
-		}
+	}
 	
 	public void addCards()
 		{
+		images = new ArrayList<String>();
 		center.setLayout(board);
 		for (int i = 0; i < cards.length; i++)
 			{
@@ -85,6 +102,8 @@ public class Concentration extends JFrame implements ActionListener
 	
 	public void addGameimages()
 		{
+			imageIconsRandom = new ArrayList<ImageIcon>();
+			
 		
 		for (int i = 0; i<16; i++)
 			{
@@ -108,11 +127,14 @@ public class Concentration extends JFrame implements ActionListener
 		Object source = e.getSource();
 		if (source == newGame)
 			{
-			for (int i = 0; i < cards.length; i++)
+				center.removeAll();
+				makeBoard();
+				validate();
+			/*for (int i = 0; i < cards.length; i++)
 				{
 					cards[i] = new JButton(orig);
 					cards[i].setEnabled(true);
-				}
+				}*/
 			}
 		
 		for (int i = 0; i < cards.length; i++)
@@ -121,40 +143,55 @@ public class Concentration extends JFrame implements ActionListener
 				{
 				if(click == 3)
 					{
-					click = 1;
-					cards[index1].setIcon(orig);
-					cards[index2].setIcon(orig);
+					
+					if(!match)
+					{
+						System.out.print("IN CLICK 3 " + click);
+						cards[index1].setIcon(orig);
+						cards[index2].setIcon(orig);
+					
+						
+					}
+							click = 1;
 					}
 				if(click == 2)
 					{
+					System.out.print("IN CLICK 2 NO MATCH: " + click);
 					cards[i].setIcon(imageIconsRandom.get(i));
 					image2 = imageIconsRandom.get(i).getDescription();
-					System.out.print(image1);
+					//System.out.print(image1);
 					index2 = i;
-					System.out.print(index1);
+					//System.out.print(index1);
 					match = checkMatch(image1, image2);
 					if(match)
 						{
+							//click = 1;
+							System.out.print("IN CLICK 2: " + click);
+							//
 						cards[index1].setEnabled(false);
 						cards[index2].setEnabled(false);
+						click++; // HERE
 						numMatches++;
 						matches.setText("Matches: " + numMatches);
 						}
 					else
 						click++;
+					
 					}
 				if(click == 1)
 					{
+					System.out.print("IN CLICK 3: " + click);
 					cards[i].setIcon(imageIconsRandom.get(i));
 					image1 = imageIconsRandom.get(i).getDescription();
-					System.out.print(image1);
+					//System.out.print(image1);
 					index1 = i;
-					System.out.print(index1);
+					//System.out.print(index1);
 					click++;
+					
 					}
-					
-					
+				
 				}
+				//System.out.print(click);
 			}
 		}
 	
