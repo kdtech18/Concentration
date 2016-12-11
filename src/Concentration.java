@@ -27,6 +27,8 @@ public class Concentration extends JFrame implements ActionListener
 	JLabel matches = new JLabel("Matches: " + numMatches);
 	JButton[] cards = new JButton[16];
 	
+	boolean[] alreadyClicked = new boolean[16];
+	
 	ImageIcon orig = new ImageIcon("imageOriginal.gif");
 	
 	ArrayList<String> images; // new ArrayList<String>();
@@ -130,6 +132,7 @@ public class Concentration extends JFrame implements ActionListener
 				center.removeAll();
 				makeBoard();
 				validate();
+				resetAlreadyClicked(alreadyClicked);
 			/*for (int i = 0; i < cards.length; i++)
 				{
 					cards[i] = new JButton(orig);
@@ -149,15 +152,14 @@ public class Concentration extends JFrame implements ActionListener
 						
 						cards[index1].setIcon(orig);
 						cards[index2].setIcon(orig);
-					
+						resetAlreadyClicked(alreadyClicked);
 						
 					}
 							click = 1;
 					}
-				if(click == 2)
+				if(click == 2 && !alreadyClicked[i])
 					{
-					if (!cards[i].getIcon().toString().equals(image2))
-						{
+					
 						cards[i].setIcon(imageIconsRandom.get(i));
 						image2 = imageIconsRandom.get(i).getDescription();
 						
@@ -167,7 +169,7 @@ public class Concentration extends JFrame implements ActionListener
 							{
 							//click = 1;
 							
-							//
+							resetAlreadyClicked(alreadyClicked);
 							cards[index1].setEnabled(false);
 							cards[index2].setEnabled(false);
 							click++; // HERE
@@ -175,11 +177,10 @@ public class Concentration extends JFrame implements ActionListener
 							matches.setText("Matches: " + numMatches);
 							} else
 							click++;
-						}
 					}
 				if(click == 1)
 					{
-					
+					alreadyClicked[i] = true;
 					cards[i].setIcon(imageIconsRandom.get(i));
 					image1 = imageIconsRandom.get(i).getDescription();
 					//System.out.print(image1);
@@ -193,10 +194,19 @@ public class Concentration extends JFrame implements ActionListener
 				//System.out.print(click);
 			}
 		}
+	
 	public boolean checkMatch(String str1, String str2)
 		{
 		
 		return str1.equals(str2);
+		}
+	
+	public void resetAlreadyClicked(boolean[] arr)
+		{
+		for (int i = 0; i < arr.length; i++)
+			{
+				arr[i] = false;
+			}
 		}
 	
 	public static void main(String[] args)
